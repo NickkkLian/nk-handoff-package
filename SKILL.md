@@ -13,6 +13,8 @@ making the result checkable by someone who was not there.** Five delegations in 
 lesson: a brief says "don't push to the remote"; the executor, meaning well, syncs anyway; the receipt
 says "all tests pass"; nobody can tell whether the checker that said so was the one you shipped.
 
+> **Paths.** Commands in this skill start with `${…SKILL_DIR}`: this skill's own folder, the one that contains this SKILL.md. Claude Code fills it in. If your agent shows the placeholder as written (Codex, Cursor, Gemini CLI and others), replace it with that folder's absolute path before you run the command. Left as it is, it expands to nothing and the path breaks.
+
 ## The shape
 
 ```

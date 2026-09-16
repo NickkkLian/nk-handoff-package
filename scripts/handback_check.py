@@ -3,7 +3,7 @@
 back; the acceptor runs the same file on their copy. One ruler, both sides.
 
     cd <package>/output && python3 handback_check.py          # or: python3 handback_check.py --pkg <package>
-    python3 handback_check.py --selftest
+    python3 handback_check.py --selftest     # from the skill's scripts/ folder: it builds sample packages with handoff_init.py
 
 Gates (generic — "would this still hold on another project?"; project-specific gates live in project_gates.py next to
 this file, exposing checks(pkg, out) -> iterable of (location, description, is_fail) and are loaded automatically):
@@ -132,9 +132,17 @@ def run(pkg):
     return 1 if fails else 0
 
 
+STANDALONE_NOTE = ("the self-test builds sample packages with handoff_init.py, which lives in the skill's scripts/ folder, not "
+                   "inside a package. Run it there: python3 <skill>/scripts/handback_check.py --selftest. Inside a package, "
+                   "this file is trusted through its pinned hash (handoff_verify.py --trust-root), not through a self-test.")
+
+
 def selftest():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    import handoff_init
+    try:
+        import handoff_init
+    except ImportError:                                  # a copy inside a package: say what to do instead of a traceback
+        return False, [f"  ✘ handoff_init.py is not next to this file: {STANDALONE_NOTE}"]
     ok, lines = True, []
 
     def chk(c, label):
@@ -178,6 +186,13 @@ def selftest():
         except RuntimeError:
             crashed = True
         chk(crashed, "a crashing project gate propagates (exit 2 in main), it is not reported as a pass")
+        import subprocess
+        alone = os.path.join(d, "alone"); os.makedirs(alone)
+        shutil_copy = __import__("shutil").copy
+        shutil_copy(os.path.abspath(__file__), os.path.join(alone, "handback_check.py"))
+        r = subprocess.run([sys.executable, "-B", "handback_check.py", "--selftest"], cwd=alone, capture_output=True, text=True)
+        chk(r.returncode == 2 and "handoff_init.py is not next to this file" in r.stdout and "Traceback" not in r.stdout + r.stderr,
+            f"a copy of this file alone (as inside a package) explains where to run the self-test, exit 2, no traceback ({r.returncode})")
     return ok, lines
 
 

@@ -1,6 +1,6 @@
 # nk-handoff-package
 
-A [Claude Code](https://code.claude.com) skill. Hand a line of work to an executor that has no context — another agent, a contractor, a future session — so that the work comes back checkable.
+An agent skill for [Claude Code](https://code.claude.com) and [OpenAI Codex](https://developers.openai.com/codex). Hand a line of work to an executor that has no context — another agent, a contractor, a future session — so that the work comes back checkable.
 
 Part of [nickkk-skills](https://github.com/NickkkLian/nickkk-skills) — skills that stop an AI coding agent's
 "done, tested, safe" from being taken on faith.
@@ -25,7 +25,7 @@ The full procedure, the boundaries and where the rules came from are in [SKILL.m
 
 ## Install
 
-Pick one of three ways. Skills load when a session starts, so open a **new** session after installing.
+Pick one of four ways: three for Claude Code, one for OpenAI Codex. Skills load when a session starts, so open a **new** session after installing.
 
 ### 1 · Terminal, one command
 
@@ -73,6 +73,26 @@ Without opening a session, the same two steps work from a shell: `claude plugin 
 6. Close the panel and start a new session.
 
 To try it for one session without installing anything: `claude --plugin-dir ./nk-handoff-package` from a clone.
+
+### 4 · OpenAI Codex CLI
+
+```bash
+git clone https://github.com/NickkkLian/nk-handoff-package.git ~/.agents/skills/nk-handoff-package
+```
+
+1. Run the command above (for one project only, clone into `.agents/skills/nk-handoff-package` inside that project).
+2. Start a new Codex session.
+3. Check it loaded, without spending a model call: `codex debug prompt-input | grep -o -- '- nk-handoff-package[a-z0-9:-]*' | sort -u` prints `- nk-handoff-package:nk-handoff-package:`. Codex adds the `nk-handoff-package:` prefix because this repository also carries a Claude Code plugin manifest. Ask for the task and the skill triggers on its own, or type `$` and pick it from the list.
+
+## Compatibility
+
+| Agent | Tested | What was checked |
+|---|---|---|
+| Claude Code (CLI 2.1.173, macOS) | yes | In a fresh project with an isolated Claude config, inside a macOS sandbox that blocked reading the tester's ~/.claude folder (settings, session history, memory), Desktop, Documents and Downloads, SSH keys and git identity, a plain request that never names the skill triggered it and it ran its bundled script. The route 2 plugin commands were also run from a shell with an isolated config: marketplace add, install, list. |
+| OpenAI Codex CLI (0.154.0-alpha.6.2, gpt-5.6-sol, low reasoning, macOS) | yes | Copied into `~/.agents/skills` of a temporary home (the folder route 4 clones into), in a fresh project, without the user's Codex config. From a plain request that never names the skill, Codex read SKILL.md, built the package with `scripts/handoff_init.py`, sealed it, pinned the trust root outside it and ran `scripts/handoff_verify.py`: planned 3, ran 3, failed 1, as expected before any work is handed back. |
+| Cursor, Gemini CLI | no | Not tested. Their documentation says both read `~/.agents/skills`, the folder route 4 clones into; Gemini CLI asks before it activates a skill. |
+
+In the nine Codex runs that used the temporary home, every call into the skill folder's scripts/ used that folder's absolute path. Route 4 was checked separately: all ten repositories cloned from GitHub into a temporary home's `~/.agents/skills` were listed by the step 3 command. These skills' frontmatter uses only name, description, license and metadata.
 
 ## Verify
 

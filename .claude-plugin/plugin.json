@@ -1,7 +1,7 @@
 {
   "name": "nk-handoff-package",
   "description": "Hand a line of work to an executor that has no context \u2014 another agent, a contractor, a future session \u2014 so that the work comes back checkable.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Nick Lian",
     "url": "https://github.com/NickkkLian"

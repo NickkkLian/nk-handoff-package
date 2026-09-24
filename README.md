@@ -25,6 +25,14 @@ The full procedure, the boundaries and where the rules came from are in [SKILL.m
 4. Pin the trust root outside the package
 5. Keep your acceptance material outside too (this file, the trust root, expected answers)
 
+## Why it is built this way
+
+**The idea.** The hard part of delegating is not copying the files; it is moving the discipline with them, and making the result checkable by someone who was not there.
+
+**Where it came from.** Own practice, 2026-09: five delegations of whole projects to an outside agent, two of them cross-reviewed for eight rounds each; a trust root added after three in-package ways of turning red into green were measured; a stop rule added after an eleven-round audit loop.
+
+**Evidence.** What was broken on purpose to show that the self-tests can fail is under [Verify](#verify); what was run end to end, and in which agent, is under [Compatibility](#compatibility).
+
 ## Install
 
 Pick one of four ways: three for Claude Code, one for OpenAI Codex. Skills load when a session starts, so open a **new** session after installing.

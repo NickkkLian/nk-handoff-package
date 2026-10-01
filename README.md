@@ -1,11 +1,44 @@
 # nk-handoff-package
 
-![nk-handoff-package](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/social/nk-handoff-package.png)
-
 An agent skill for [Claude Code](https://code.claude.com) and [OpenAI Codex](https://developers.openai.com/codex). Hand a line of work to an executor that has no context — another agent, a contractor, a future session — so that the work comes back checkable.
+
+**What you get.** One real run of nk-handoff-package 0.1.2, copied from the terminal on 2026-09-30:
+
+```text
+$ python3 scripts/handoff_init.py demo job --form round | sed "s|$PWD/||g"
+scaffolded demo/job (form round). Next: fill every '<<< FILL' slot, put inputs in reference/, then --seal and --trust-root.
+```
+
+![nk-handoff-package](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/social/nk-handoff-package.png)
 
 Part of [nickkk-skills](https://github.com/NickkkLian/nickkk-skills) — skills that stop an AI coding agent's
 "done, tested, safe" from being taken on faith.
+
+## Try it
+
+Nothing is installed and nothing under `~/.claude` changes: clone, run the self-test, run the example (it only writes inside the clone).
+
+```bash
+git clone https://github.com/NickkkLian/nk-handoff-package && cd nk-handoff-package
+python3 scripts/handback_check.py --selftest
+python3 scripts/handoff_init.py --selftest
+python3 scripts/handoff_verify.py --selftest
+python3 scripts/handoff_init.py demo job --form round | sed "s|$PWD/||g"
+```
+
+The self-tests print:
+
+```text
+handback_check selftest · 10/10 passed
+handoff_init selftest · 9/9 passed
+handoff_verify selftest · 8/8 passed
+```
+
+The last command prints the block at the top of this page; its last line is the one below, and its exit code is 0.
+
+```text
+scaffolded demo/job (form round). Next: fill every '<<< FILL' slot, put inputs in reference/, then --seal and --trust-root.
+```
 
 ![nk-handoff-package demo: before and after](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/nk-handoff-package.gif)
 
@@ -19,11 +52,11 @@ The full procedure, the boundaries and where the rules came from are in [SKILL.m
 
 ## How it works
 
-1. `python3 scripts/handoff_init.py <workspace> <task> [--form full|round|asset]` Refuses to touch a non-empty package
-2. Put the inputs in `reference/` and seal
-3. Write `output/project_gates.py` for anything project-specific (thresholds, required files, forbidden imports)
-4. Pin the trust root outside the package
-5. Keep your acceptance material outside too (this file, the trust root, expected answers)
+1. `python3 scripts/handoff_init.py <workspace> <task> [--form full|round|asset]` Refuses to touch a non-empty package.
+2. Put the inputs in `reference/` and seal: `handoff_init.py <workspace> <task> --seal`.
+3. Write `output/project_gates.py` for anything project-specific (thresholds, required files, forbidden imports).
+4. Pin the trust root outside the package: `handoff_init.py <workspace> <task> --trust-root`.
+5. Keep your acceptance material outside too (this file, the trust root, expected answers).
 
 ## Why it is built this way
 
@@ -112,9 +145,16 @@ python3 scripts/handoff_init.py --selftest
 python3 scripts/handoff_verify.py --selftest
 ```
 
-Standard library only, Python 3.9+. Before publishing, the guarded lines of each script were
-mutated one at a time in a sandbox copy and the self-test was confirmed to go red on the named
-assertion, without a traceback; the unmutated control stayed green.
+Standard library only, Python 3.9+. On 2026-09-30 every self-test above passed, and
+`breakcheck.py` from [nk-breakable-selftest](https://github.com/NickkkLian/nk-breakable-selftest) broke each script on purpose in a sandbox copy:
+
+- `handback_check.py`: 3 lines broken one at a time; 1 turned the self-test red without a traceback. Not covered: the self-test stayed green with L132, L214 switched off.
+- `handoff_init.py`: 2 lines broken one at a time; each turned the self-test red without a traceback.
+- `handoff_verify.py`: 1 line broken one at a time; it turned the self-test red without a traceback.
+
+The unmutated control stayed green every time. Only lines that record a finding, raise, or return a failing exit code
+were broken (the tool's pattern, or the hand-written list); a line number refers to the script as shipped in this version.
+This shows those lines are covered. It does not show that nothing else can fail.
 
 ## Limits
 

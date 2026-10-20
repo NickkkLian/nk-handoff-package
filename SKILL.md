@@ -4,7 +4,7 @@ description: Hand a line of work to an executor that has no context — another 
 license: MIT
 metadata:
   provenance: own practice (2026-09); no external source
-  version: 0.1.2
+  version: 0.1.3
 ---
 # Handoff package
 
@@ -93,3 +93,7 @@ says "all tests pass"; nobody can tell whether the checker that said so was the 
 Own practice, 2026-09: five delegations of whole projects to an outside agent, two of them cross-reviewed
 for eight rounds each; a trust root added after three in-package ways of turning red into green were
 measured; a stop rule added after an eleven-round audit loop. No external source.
+
+## Portable acceptor entry point
+
+For a project using handoff/ and anchor.txt, run scripts/make_verifier.py on the project folder. Keep verify.py, acceptor-tools/ and anchor.txt outside the executor-writeable handoff/ directory. Return those acceptor files together; the runner is bundled and resolved relative to verify.py, so moving the delivery does not depend on a lab path.

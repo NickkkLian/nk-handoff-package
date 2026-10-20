@@ -1,0 +1,1751 @@
+{
+  "mechanical": {
+    "skill": {
+      "attempts": 3,
+      "runs_done": 3,
+      "pass_count": 3,
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "wall_s": 0,
+      "total_wall_s": 1.0578207910002675,
+      "tokens": null,
+      "runs_with_tokens": 0,
+      "recorded_runs": 3,
+      "statuses": {
+        "recorded": 3
+      },
+      "messages": [],
+      "verdict": null
+    },
+    "codex": {
+      "attempts": 3,
+      "runs_done": 3,
+      "pass_count": 3,
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "wall_s": 484.9295267490015,
+      "total_wall_s": 487.546737374003,
+      "tokens": {
+        "input_tokens": 523510,
+        "cached_input_tokens": 472064,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 28339,
+        "reasoning_output_tokens": 6998
+      },
+      "runs_with_tokens": 3,
+      "recorded_runs": 0,
+      "statuses": {
+        "ok": 3
+      },
+      "messages": [],
+      "verdict": null
+    },
+    "claude": {
+      "attempts": 3,
+      "runs_done": 3,
+      "pass_count": 3,
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "wall_s": 598.2114217499911,
+      "total_wall_s": 599.4896112910064,
+      "tokens": {
+        "input_tokens": 66,
+        "cache_creation_input_tokens": 100356,
+        "cache_read_input_tokens": 1482955,
+        "output_tokens": 54582
+      },
+      "runs_with_tokens": 3,
+      "recorded_runs": 0,
+      "statuses": {
+        "ok": 3
+      },
+      "messages": [],
+      "verdict": null
+    }
+  },
+  "qa_passes": {
+    "skill": 3,
+    "codex": 3,
+    "claude": 3
+  },
+  "quality": {
+    "codex": {
+      "claude": {
+        "cases": {
+          "handoff": {
+            "judged": 3,
+            "mean": 0.6818181818181818
+          }
+        },
+        "mean": 0.6818181818181818
+      },
+      "codex": {
+        "cases": {
+          "handoff": {
+            "judged": 3,
+            "mean": 0.6666666666666666
+          }
+        },
+        "mean": 0.6666666666666666
+      },
+      "skill": {
+        "cases": {
+          "handoff": {
+            "judged": 3,
+            "mean": 0.9545454545454546
+          }
+        },
+        "mean": 0.9545454545454546
+      }
+    },
+    "claude_pairs": {
+      "codex": {
+        "codex": {
+          "cases": {
+            "handoff": {
+              "judged": 3,
+              "mean": 0.6666666666666666
+            }
+          },
+          "mean": 0.6666666666666666
+        },
+        "skill": {
+          "cases": {
+            "handoff": {
+              "judged": 3,
+              "mean": 0.9848484848484849
+            }
+          },
+          "mean": 0.9848484848484849
+        }
+      },
+      "claude": {
+        "claude": {
+          "cases": {
+            "handoff": {
+              "judged": 3,
+              "mean": 0.6969696969696969
+            }
+          },
+          "mean": 0.6969696969696969
+        },
+        "skill": {
+          "cases": {
+            "handoff": {
+              "judged": 3,
+              "mean": 1.0
+            }
+          },
+          "mean": 1.0
+        }
+      }
+    },
+    "codex_supplement": {
+      "records": [
+        {
+          "blind": "c86bccb7d335",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "skill",
+          "run": "0001",
+          "label": null,
+          "mean": 0.9545454545454546,
+          "values": [
+            1,
+            1,
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"do not `git push`\"; \"silently overwrite someone else's work\"; \"output/project_gates.py\" — \"do not edit it\"."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"reference/importer-spec.md — the owner's source requirement; do not edit it\"; handoff/reference/MANIFEST.sha256 seals it."
+            },
+            "K3": {
+              "answer": "P",
+              "evidence": "handoff/check.py:5 — delegated crashes return 2, but uncaught subprocess.call exceptions in this adapter exit 1."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "handoff/output/project_gates.py:\"quoted commas and Unicode convert to the expected JSON array\"; supplied C01 confirms exit 1 untouched."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "acceptor-tools/handoff_verify.py:\"sha(os.path.join(pkg, f)) != h\"; anchor.txt covers START.md and check.py; T01–T03 passed."
+            },
+            "K6": {
+              "answer": "Y",
+              "evidence": "handoff/output/RECEIPT.md:\"## Unsure\"; handoff/output/handback_check.py rejects an empty section as \"empty or template text\"."
+            },
+            "K7": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"one file per completion claim, starting with the re-run command\" and \"raw output, not a summary\"."
+            },
+            "K8": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"Anything that must leave the package goes into `output/pending/`, and the acceptor moves it\"; templates cover commits, devlogs, memory."
+            },
+            "K9": {
+              "answer": "Y",
+              "evidence": "handoff/.acceptance.txt:\"trustroot / selfcheck / drift\"; acceptor-tools/handoff_verify.py counts planned/ran/failed and rejects NOT RUN steps."
+            },
+            "K10": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"read the project material, in this order\"; TASK.md defines deliverables; START specifies output/work/, final checking, and returning everything."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "verify.py:external trust-root verification; supplied scorer reports \"T01 ok\", \"T02 ok\", and \"T03 ok\"."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "af17a710e1aa",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "skill",
+          "run": "0002",
+          "label": null,
+          "mean": 0.9545454545454546,
+          "values": [
+            1,
+            1,
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “do not `git push`”; “Not one byte goes outside it”; writes “would silently overwrite someone else's work”."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/TASK.md: “Do not: Edit ... anything in `reference/`”; handoff/reference/MANIFEST.sha256 fingerprints importer-spec.md."
+            },
+            "K3": {
+              "answer": "P",
+              "evidence": "handoff/check.py: `sys.exit(subprocess.call(...))` propagates child codes, but an exception in this wrapper exits 1 without a crash handler."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "scorer C01: “exit 1”; handoff/output/project_gates.py tests deliverable presence, unit tests, conversion, and rejection behavior."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "scorer T01–T03: all “ok”; anchor.txt covers START.md and check.py; verify.py supplies the external trust root."
+            },
+            "K6": {
+              "answer": "Y",
+              "evidence": "handoff/output/RECEIPT.md: “## Unsure”; handoff/output/handback_check.py rejects an empty section or template text."
+            },
+            "K7": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “one file per completion claim, starting with the re-run command ... and containing the raw output”."
+            },
+            "K8": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “Anything that must leave the package goes into `output/pending/`, and the acceptor moves it”; pending records are replayed manually."
+            },
+            "K9": {
+              "answer": "Y",
+              "evidence": "handoff/.acceptance.txt: trustroot, selfcheck, drift; acceptor-tools/handoff_verify.py prints planned/ran/failed counts and treats NOT RUN as unsuccessful."
+            },
+            "K10": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: ordered reading instructions identify the spec, TASK.md, gates, deliverable locations, pre-return checker command, and hand-back contents."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "scorer T01–T03: “T01 ok”, “T02 ok”, “T03 ok”."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "785c38d20982",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "skill",
+          "run": "0003",
+          "label": null,
+          "mean": 0.9545454545454546,
+          "values": [
+            1,
+            1,
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"silently overwrite someone else's work\" explains explicit write and push prohibitions; TASK.md forbids checker edits."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"reference/importer-spec.md ... do not edit it\"; handoff/reference/MANIFEST.sha256 seals the spec."
+            },
+            "K3": {
+              "answer": "P",
+              "evidence": "handoff/check.py:Uncaught exceptions from subprocess.call exit 1; the inner checker correctly handles crashes with exit 2."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "handoff/output/project_gates.py:Tests conversion and rejection once deliverables exist; scorer C01 confirms untouched package exits 1."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "anchor.txt:Pins START.md and check.py; verify.py invokes trust-root comparison; scorer T01–T03 all ok."
+            },
+            "K6": {
+              "answer": "Y",
+              "evidence": "handoff/output/RECEIPT.md:\"## Unsure\"; handback_check.py rejects empty sections and template markers."
+            },
+            "K7": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"one file per completion claim, starting with the re-run command\" and \"raw output, not a summary\"."
+            },
+            "K8": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"Anything that must leave the package goes into output/pending/, and the acceptor moves it.\""
+            },
+            "K9": {
+              "answer": "Y",
+              "evidence": "handoff/.acceptance.txt:Lists trustroot, selfcheck, drift; acceptor-tools/handoff_verify.py counts planned/ran/failed and rejects NOT RUN steps."
+            },
+            "K10": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:Provides reading order, task references, output locations, pre-return command, and hand-back contents."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "anchor.txt:External fingerprints withstand all supplied functional tamper tests: T01, T02, and T03 ok."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "35f01e069fe5",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "codex",
+          "run": "0001",
+          "label": null,
+          "mean": 0.6818181818181818,
+          "values": [
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            0.5,
+            0,
+            0,
+            0.5,
+            1,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "P",
+              "evidence": "handoff/START.md: \"Keep every change and new deliverable under work/\"; no explicit remote-push prohibition or boundary reason."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: \"Do not edit ... importer-spec.md\"; anchor.txt fingerprints importer-spec.md."
+            },
+            "K3": {
+              "answer": "Y",
+              "evidence": "handoff/check.py: \"return 0\", \"return 1\", and \"except Exception: ... status = 2\" distinguish outcomes."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "handoff/check.py: \"JSON mismatch\" is a substantive acceptance gate; supplied C01 reports exit 1."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "verify.py: \"if actual != expected\" detects fingerprint changes; supplied T01–T03 all pass, covering START.md and check.py."
+            },
+            "K6": {
+              "answer": "P",
+              "evidence": "handoff/START.md: \"Report the command you ran, its exit code, and remaining limitations\"; no explicit unsure section or empty-section rule."
+            },
+            "K7": {
+              "answer": "N",
+              "evidence": "handoff/START.md: \"Report the command you ran, its exit code\"; no per-claim evidence files containing rerun commands and raw output."
+            },
+            "K8": {
+              "answer": "N",
+              "evidence": "handoff/START.md: No pending-record procedure for remote pushes, commits, memory, notes, or devlogs."
+            },
+            "K9": {
+              "answer": "P",
+              "evidence": "handoff/check.py: \"if not failures:\" gates the case list; skipped cases receive no NOT RUN accounting."
+            },
+            "K10": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: \"Read this file first, then importer-spec.md\"; specifies task, work/importer.py, checker command, and whole-folder return."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "verify.py: Supplied scorer results report T01 ok, T02 ok, and T03 ok."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "1d50cabec0e5",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "codex",
+          "run": "0002",
+          "label": null,
+          "mean": 0.5909090909090909,
+          "values": [
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "P",
+              "evidence": "handoff/START.md: “Put the implementation and any explanatory material under `work/` only.” No remote prohibition or boundary reason."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “Do not edit ... `importer-spec.md`”; anchor.txt includes its SHA-256 fingerprint."
+            },
+            "K3": {
+              "answer": "Y",
+              "evidence": "handoff/check.py: “return 1 if failures else 0”; unexpected exceptions set “result = 2”."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "RE-RUN BY SCORER: “C01 ok exit 1”; handoff/check.py tests actual importer output against expected records."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "verify.py: “if digest.hexdigest() != expected”; anchor.txt covers START.md and check.py; T01–T03 all passed."
+            },
+            "K6": {
+              "answer": "N",
+              "evidence": "handoff/START.md: “Include the checker command, exit code, and result”; no Unsure section or empty-section rule."
+            },
+            "K7": {
+              "answer": "N",
+              "evidence": "handoff/START.md: “Include the checker command, exit code, and result”; no per-claim evidence files requiring command then raw output."
+            },
+            "K8": {
+              "answer": "N",
+              "evidence": "handoff/START.md: No pending records or replay procedure for pushes, commits, memory, notes, or devlogs."
+            },
+            "K9": {
+              "answer": "N",
+              "evidence": "handoff/START.md: “Run ... python3 handoff/check.py”; no upfront acceptance-step denominator or NOT RUN accounting."
+            },
+            "K10": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “Read this file first, then `importer-spec.md`”; names implementation location, checker command, and whole-folder return."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "RE-RUN BY SCORER: “T01 ok”, “T02 ok”, “T03 ok”."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "dbef1b1d520f",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "codex",
+          "run": "0003",
+          "label": null,
+          "mean": 0.7272727272727273,
+          "values": [
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            0.5,
+            0,
+            0,
+            1,
+            1,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "P",
+              "evidence": "handoff/START.md: “Put every deliverable under `work/`”; checker edits forbidden, but no remote prohibition or boundary reason."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “do not change”; anchor.txt fingerprints importer-spec.md."
+            },
+            "K3": {
+              "answer": "Y",
+              "evidence": "handoff/check.py: “return 1 if failed else 0”; unexpected exceptions set “status = 2”."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "handoff/check.py: supplied C01 reports exit 1; ten functional cases test the deliverable once present."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "verify.py: integrity_errors compares external anchor fingerprints; supplied T01–T03 all passed, covering START.md and check.py."
+            },
+            "K6": {
+              "answer": "P",
+              "evidence": "handoff/START.md: “a brief record of what you tested”; generic hand-back notes lack an explicit unsure section and empty-section meaning."
+            },
+            "K7": {
+              "answer": "N",
+              "evidence": "handoff/START.md: “record the result in your README”; no per-claim evidence files, rerun commands, or raw output required."
+            },
+            "K8": {
+              "answer": "N",
+              "evidence": "handoff/START.md: no pending records for remote pushes, commits, memory, notes, or devlogs."
+            },
+            "K9": {
+              "answer": "Y",
+              "evidence": "handoff/check.py: “cases = [” declares ten acceptance steps; “acceptance checks passed” reports the denominator; execution failures fail checks."
+            },
+            "K10": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “Read this file first, then `importer-spec.md`”; names deliverables, checker command, and whole-folder return."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "verify.py: supplied scorer reports T01, T02, and T03 all “ok”."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "94db52ba923e",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "claude",
+          "run": "0001",
+          "label": null,
+          "mean": 0.7272727272727273,
+          "values": [
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            0.5,
+            0.5,
+            0,
+            1,
+            0.5,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "P",
+              "evidence": "handoff/START.md:\"Nothing outside `work/` was changed, added or deleted.\" Rejection is explained; remote pushes are not prohibited."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:`importer-spec.md` marked \"**No**\" under editing; anchor.txt supplies its SHA-256."
+            },
+            "K3": {
+              "answer": "Y",
+              "evidence": "handoff/check.py:main returns 0 or 1; `except Exception:` sets `code = 2`."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "handoff/check.py:Real fixed and randomized behaviour tests exist; supplied C01 reports \"exit 1\"."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "verify.py:`elif sha256(path) != want:` compares external fingerprints covering START.md and check.py; supplied T01–T03 all pass."
+            },
+            "K6": {
+              "answer": "P",
+              "evidence": "handoff/START.md:\"anything you are unsure about\" is requested, but no receipt template or empty-means-unfilled rule exists."
+            },
+            "K7": {
+              "answer": "P",
+              "evidence": "handoff/START.md:\"the full output of your final `python3 handoff/check.py` run\" requires one combined log, without per-claim evidence files."
+            },
+            "K8": {
+              "answer": "N",
+              "evidence": "handoff/START.md:No pending records or owner replay procedure for remote pushes, commits, memory, notes, or devlogs."
+            },
+            "K9": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:\"Behaviour that the checker tests\" declares acceptance steps; check.py fails missing importer with \"behaviour checks not run\"."
+            },
+            "K10": {
+              "answer": "P",
+              "evidence": "handoff/START.md:\"Read this file to the end before you start.\" Task, destination, checks, and return are specified; subsequent reading order is absent."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "verify.py:Supplied scorer results report \"T01 ok\", \"T02 ok\", and \"T03 ok\"."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "ef069d4c5d91",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "claude",
+          "run": "0002",
+          "label": null,
+          "mean": 0.6818181818181818,
+          "values": [
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            0.5,
+            0,
+            0,
+            1,
+            0.5,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "P",
+              "evidence": "handoff/START.md: “Put your deliverable only in handoff/work/”; checker edits forbidden, but no remote prohibition or outside-write rationale."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md: “Do not edit, rename or delete”; anchor.txt fingerprints importer-spec.md."
+            },
+            "K3": {
+              "answer": "Y",
+              "evidence": "handoff/check.py: returns 0 or 1; exception handler prints “RESULT: CHECKER CRASHED” and exits 2."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "scorer C01: “ok exit 1”; handoff/check.py tests fixed cases, random cases, and missing-input behavior once present."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "anchor.txt: covers START.md and check.py; scorer T01–T03 all report “ok”."
+            },
+            "K6": {
+              "answer": "P",
+              "evidence": "handoff/START.md: NOTES.md requires assumptions and unfinished work, but no explicit unsure section or unfilled-section rule."
+            },
+            "K7": {
+              "answer": "N",
+              "evidence": "handoff/START.md: “how you tested it beyond the checker (if you did)”; no per-claim evidence files, rerun commands, or raw-output requirement."
+            },
+            "K8": {
+              "answer": "N",
+              "evidence": "handoff/START.md: Rules provide no pending-record mechanism for remote pushes, commits, memory, notes, or devlogs."
+            },
+            "K9": {
+              "answer": "Y",
+              "evidence": "verify.py: numbered fingerprint/checker acceptance steps; “check failed: checker not run (check.py changed)” makes an unrun step fail."
+            },
+            "K10": {
+              "answer": "P",
+              "evidence": "handoff/START.md: specifies task, destination, checker, and returned folder, but gives no ordered file-reading list."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "scorer T01–T03: all “ok”; regenerated in-package fingerprints did not bypass the external anchor."
+            }
+          },
+          "valid": true
+        },
+        {
+          "blind": "6a7399f8b441",
+          "task": "nk-handoff-package",
+          "case": "handoff",
+          "arm": "claude",
+          "run": "0003",
+          "label": null,
+          "mean": 0.6363636363636364,
+          "values": [
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            0.5,
+            0,
+            0,
+            0.5,
+            0.5,
+            1
+          ],
+          "details": {
+            "K1": {
+              "answer": "P",
+              "evidence": "handoff/START.md:“Nothing outside `work/` may change.” Checker edits are forbidden; remote pushes and an explanatory boundary reason are absent."
+            },
+            "K2": {
+              "answer": "Y",
+              "evidence": "handoff/START.md:Spec editing is marked “No”; anchor.txt includes its SHA-256 fingerprint."
+            },
+            "K3": {
+              "answer": "Y",
+              "evidence": "handoff/check.py:“return 1 if failures else 0”; the exception handler calls “sys.exit(2)”."
+            },
+            "K4": {
+              "answer": "Y",
+              "evidence": "RE-RUN BY SCORER:“C01 ok   exit 1”; check.py includes substantive importer acceptance tests."
+            },
+            "K5": {
+              "answer": "Y",
+              "evidence": "verify.py:“elif sha256(p) != want”; anchor.txt covers START.md and check.py; T01–T03 passed."
+            },
+            "K6": {
+              "answer": "P",
+              "evidence": "handoff/START.md:“short notes ... anything unfinished”; no explicit unsure/unverified section or empty-means-unfilled rule."
+            },
+            "K7": {
+              "answer": "N",
+              "evidence": "handoff/START.md:“how you tested it”; no per-claim evidence file containing a rerun command and raw output is required."
+            },
+            "K8": {
+              "answer": "N",
+              "evidence": "handoff/START.md:No pending-record mechanism or instructions address remote pushes, commits, memory, notes, or devlogs on real systems."
+            },
+            "K9": {
+              "answer": "P",
+              "evidence": "handoff/check.py:“FIXED” and “FAILURES” enumerate cases; “len(results)” counts executed checks without a planned denominator or skipped-case accounting."
+            },
+            "K10": {
+              "answer": "P",
+              "evidence": "handoff/START.md:Task, deliverable location, checker command, and returned folder are specified; no reading order names subsequent files."
+            },
+            "K11": {
+              "answer": "Y",
+              "evidence": "RE-RUN BY SCORER:“T01 ok”; “T02 ok”; “T03 ok”."
+            }
+          },
+          "valid": true
+        }
+      ],
+      "arms": {
+        "claude": {
+          "cases": {
+            "handoff": {
+              "judged": 3,
+              "mean": 0.6818181818181818
+            }
+          },
+          "mean": 0.6818181818181818
+        },
+        "codex": {
+          "cases": {
+            "handoff": {
+              "judged": 3,
+              "mean": 0.6666666666666666
+            }
+          },
+          "mean": 0.6666666666666666
+        },
+        "skill": {
+          "cases": {
+            "handoff": {
+              "judged": 3,
+              "mean": 0.9545454545454546
+            }
+          },
+          "mean": 0.9545454545454546
+        }
+      },
+      "errors": [],
+      "complete": true
+    },
+    "claude_records": {
+      "codex": {
+        "records": [
+          {
+            "blind": "3d47eaace27e",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0001",
+            "baseline": "codex",
+            "labels": {
+              "A": "codex",
+              "B": "skill"
+            },
+            "label": "A",
+            "arm": "codex",
+            "mean": 0.6818181818181818,
+            "values": [
+              0.5,
+              1,
+              1,
+              1,
+              1,
+              0.5,
+              0,
+              0,
+              0.5,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"Keep every change and new deliverable under `work/`... Do not edit this file, `check.py`\" (no remote/push order, no reason given)"
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Do not edit this file, `check.py`, or `importer-spec.md`\"; anchor.txt pins importer-spec.md"
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:\"except Exception: print(\\\"CHECKER CRASHED\\\"...) status = 2\" with return 1 on failures, 0 on ACCEPTED"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:C01 exit 1; once present, cases() runs 10 CSV cases against independently specified expected JSON"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:\"if actual != expected: failures.append(name + \\\": fingerprint changed\\\")\"; T01-T03 ok; START.md and check.py covered"
+              },
+              "K6": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"Report the command you ran, its exit code, and remaining limitations\" (limitations only, no Unsure section or template)"
+              },
+              "K7": {
+                "answer": "N",
+                "evidence": "handoff/START.md:\"Report the command you ran, its exit code\" (no per-claim evidence file with raw output)"
+              },
+              "K8": {
+                "answer": "N",
+                "evidence": "handoff/START.md:no mention of commits, pushes, memory or devlogs, and no pending records"
+              },
+              "K9": {
+                "answer": "P",
+                "evidence": "handoff/check.py:cases() lists 10 fixed cases and unrunnable cases count as FAIL, but verify.py prints no planned/ran/failed counts"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Read this file first, then `importer-spec.md`... Put your implementation at `work/importer.py`... return the whole `handoff/` folder\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "scorer:T01 ok, T02 ok, T03 ok"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "3d47eaace27e",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0001",
+            "baseline": "codex",
+            "labels": {
+              "A": "codex",
+              "B": "skill"
+            },
+            "label": "B",
+            "arm": "skill",
+            "mean": 1.0,
+            "values": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"do not `git push`... a write from you would silently overwrite someone else's work without an error\""
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"`reference/importer-spec.md` — the owner's source requirement; do not edit it\"; reference/MANIFEST.sha256 is pinned in anchor.txt"
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/output/handback_check.py:\"traceback.print_exc(file=sys.stdout)... sys.exit(2)\"; handoff/check.py passes the exit code through"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/output/project_gates.py:C01 exit 1; once present, it runs the unit suite and black-box good/short-row cases"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:step_trustroot compares anchor.txt hashes; covers START.md and check.py; T01-T03 ok"
+              },
+              "K6": {
+                "answer": "Y",
+                "evidence": "handoff/output/RECEIPT.md:\"## Unsure <<< FILL what you are unsure about; write 'none' only if true\"; G2 fails empty sections"
+              },
+              "K7": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"`evidence/` — one file per completion claim, starting with the re-run command (`$ …`) and containing the raw output\""
+              },
+              "K8": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Anything that must leave the package goes into `output/pending/`, and the acceptor moves it\""
+              },
+              "K9": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:\"planned N / ran M / failed K\"; a step that could not run counts as NOT RUN; .acceptance.txt declares the steps"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:Step 2 gives the reading order; TASK.md gives the deliverable in output/work/; run handback_check.py; \"What you hand back\" section"
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "scorer:T01 ok, T02 ok, T03 ok"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "f2526025f73c",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0002",
+            "baseline": "codex",
+            "labels": {
+              "A": "skill",
+              "B": "codex"
+            },
+            "label": "A",
+            "arm": "skill",
+            "mean": 1.0,
+            "values": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"do not `git push`... a write from you would silently overwrite someone else's work without an error.\""
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"reference/importer-spec.md — the owner's source requirement; do not edit it.\" plus reference/MANIFEST.sha256, pinned in anchor.txt"
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/output/handback_check.py:\"except Exception: traceback.print_exc(...) ... sys.exit(2)\"; check.py passes the subprocess exit code through"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/output/project_gates.py:runs the unit suite and black-box good/short-row cases on output/work/; C01 exit 1"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:runs handoff_verify.py with --trust-root anchor.txt; anchor.txt pins START.md and check.py; T01-T03 ok"
+              },
+              "K6": {
+                "answer": "Y",
+                "evidence": "handoff/output/RECEIPT.md:\"## Unsure ... write 'none' only if true\"; G2 fails on an empty or FILL section"
+              },
+              "K7": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"evidence/ — one file per completion claim, starting with the re-run command ($ …) and containing the raw output\""
+              },
+              "K8": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Anything that must leave the package goes into output/pending/, and the acceptor moves it.\""
+              },
+              "K9": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:\"planned N / ran M / failed K\"; a step that could not run is NOT RUN; steps declared in .acceptance.txt"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:Steps 0-3 give the reading order, TASK.md gives the deliverable in output/work/, and the hand-back list is stated"
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "scorer:T01, T02, T03 all ok"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "f2526025f73c",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0002",
+            "baseline": "codex",
+            "labels": {
+              "A": "skill",
+              "B": "codex"
+            },
+            "label": "B",
+            "arm": "codex",
+            "mean": 0.5909090909090909,
+            "values": [
+              0.5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"Do not edit START.md, check.py, or importer-spec.md\" and \"under work/ only\"; no remote/push order and no reason given"
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Do not edit ... importer-spec.md\"; anchor.txt pins importer-spec.md"
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:\"except Exception: print(\\\"ERROR checker crashed\\\"...) result = 2\""
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:the explicit acceptance cases run against work/importer.py once it is present; C01 exit 1"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:integrity() compares anchor.txt before and after the checker runs; START.md and check.py are pinned; T01-T03 ok"
+              },
+              "K6": {
+                "answer": "N",
+                "evidence": "handoff/START.md:only \"Include the checker command, exit code, and result in your hand-back message\"; no Unsure section or template"
+              },
+              "K7": {
+                "answer": "N",
+                "evidence": "handoff/START.md:\"Do not claim tests you did not run\"; no per-claim evidence file with a re-run line and raw output"
+              },
+              "K8": {
+                "answer": "N",
+                "evidence": "handoff/START.md:pending records for commits, pushes, memory or devlogs are not mentioned"
+              },
+              "K9": {
+                "answer": "N",
+                "evidence": "verify.py:prints PASS/FAIL lines only; no declared step list and no planned/ran/failed count"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Read this file first, then importer-spec.md\"; names work/importer.py, says to run check.py and \"Return the whole handoff/ folder\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "scorer:T01, T02, T03 all ok"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "e89415df52b5",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0003",
+            "baseline": "codex",
+            "labels": {
+              "A": "codex",
+              "B": "skill"
+            },
+            "label": "A",
+            "arm": "codex",
+            "mean": 0.7272727272727273,
+            "values": [
+              0.5,
+              1,
+              1,
+              1,
+              1,
+              0.5,
+              0,
+              0,
+              1,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"do not change this file, `check.py`, or `importer-spec.md`\" / \"Do not alter the checker\". Nothing on remotes or writing outside, and no reason given."
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"do not change this file, `check.py`, or `importer-spec.md`\"; anchor.txt:\"de4821a3...  importer-spec.md\""
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:\"except Exception: print(\\\"ERROR checker crashed\\\"...) status = 2\"; main returns 1 on failures, else 0"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:C01 exit 1, and 10 real acceptance cases run the importer once work/importer.py exists"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:\"integrity_errors(entries)\" compares anchor.txt hashes before and after the checker; T01-T03 ok, START.md and check.py covered"
+              },
+              "K6": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"Include `work/README.md` with usage, rejection behavior, assumptions, and a brief record of what you tested\". No Unsure section."
+              },
+              "K7": {
+                "answer": "N",
+                "evidence": "handoff/START.md:only \"record the result in your README\"; no per-claim evidence file with re-run command and raw output"
+              },
+              "K8": {
+                "answer": "N",
+                "evidence": "handoff/START.md:no mention of pushes, commits, memory or devlogs, and no pending records"
+              },
+              "K9": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:cases list declared; prints \"%s/%s acceptance checks passed\"; timeouts and execution errors count as failures"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Read this file first, then `importer-spec.md`\"; deliverable in work/; run check.py; \"Return the whole handoff/ folder\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "verify.py:T01, T02, T03 all ok (check.py and START.md named as fingerprint changed)"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "e89415df52b5",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0003",
+            "baseline": "codex",
+            "labels": {
+              "A": "codex",
+              "B": "skill"
+            },
+            "label": "B",
+            "arm": "skill",
+            "mean": 0.9545454545454546,
+            "values": [
+              1,
+              1,
+              0.5,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"do not `git push`\" ... \"a write from you would silently overwrite someone else's work without an error\""
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"`reference/importer-spec.md` — ... do not edit it\"; handoff/reference/MANIFEST.sha256 plus anchor.txt pin it"
+              },
+              "K3": {
+                "answer": "P",
+                "evidence": "handoff/check.py:the adapter has no crash handler (a missing output/ raises and exits 1), although handback_check.py exits 2 on crash"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/output/project_gates.py:C01 exit 1; real unit and black-box gates run once deliverables are present"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:step_trustroot compares anchor.txt; START.md and check.py are pinned; T01-T03 ok"
+              },
+              "K6": {
+                "answer": "Y",
+                "evidence": "handoff/output/RECEIPT.md:\"## Unsure ... write 'none' only if true\"; G2 fails an empty or template section"
+              },
+              "K7": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"one file per completion claim, starting with the re-run command (`$ …`) and containing the raw output\""
+              },
+              "K8": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Anything that must leave the package goes into `output/pending/`, and the acceptor moves it\""
+              },
+              "K9": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:\"planned N / ran M / failed K\"; \"NOT RUN steps are not passes\"; handoff/.acceptance.txt declares 3 steps"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:Step 2 ordered file list; TASK.md gives the task; output/work/; run handback_check.py; \"What you hand back\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "anchor.txt:T01, T02, T03 all ok (mismatch names check.py and START.md)"
+              }
+            },
+            "valid": true
+          }
+        ],
+        "arms": {
+          "codex": {
+            "cases": {
+              "handoff": {
+                "judged": 3,
+                "mean": 0.6666666666666666
+              }
+            },
+            "mean": 0.6666666666666666
+          },
+          "skill": {
+            "cases": {
+              "handoff": {
+                "judged": 3,
+                "mean": 0.9848484848484849
+              }
+            },
+            "mean": 0.9848484848484849
+          }
+        },
+        "errors": [],
+        "complete": true
+      },
+      "claude": {
+        "records": [
+          {
+            "blind": "7566c73375f0",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0001",
+            "baseline": "claude",
+            "labels": {
+              "A": "claude",
+              "B": "skill"
+            },
+            "label": "A",
+            "arm": "claude",
+            "mean": 0.7272727272727273,
+            "values": [
+              0.5,
+              1,
+              1,
+              1,
+              1,
+              0.5,
+              0.5,
+              0,
+              0.5,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"Don't try to work around the checker.\" Forbids checker edits; no order against pushing to remotes or writing outside the package."
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"`importer-spec.md` | The original spec from the requester | **No**\"; anchor.txt pins importer-spec.md hash de4821a3..."
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:\"except Exception: traceback.print_exc() ... code = 2\"; main returns 1 on failures, 0 otherwise"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:C01 exit 1; real gate: FIXED_CASES plus random_case compared against reference() once importer.py exists"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:\"elif sha256(path) != want: print(\\\"CHANGED: %s (hash mismatch)\\\"\"; anchor covers START.md, check.py; T01-T03 ok"
+              },
+              "K6": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"...the full output of your final check.py run, and anything you are unsure about.\" No template; empty is not called unfilled"
+              },
+              "K7": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"the full output of your final `python3 handoff/check.py` run\" One combined log; no per-claim file with re-run line"
+              },
+              "K8": {
+                "answer": "N",
+                "evidence": "handoff/START.md:no mention of commits, pushes, memory or devlog records, or a pending queue"
+              },
+              "K9": {
+                "answer": "P",
+                "evidence": "verify.py:\"FAIL: checker not run because %s was changed\" Unrun checker counts as a problem; no planned/ran/failed denominator"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:file table, \"## The task\", \"Put everything you make here\" (work/), \"python3 handoff/check.py\", \"Return the whole handoff/ folder\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "verify.py:T01 ok, T02 ok, T03 ok (\"CHANGED: check.py (hash mismatch)\")"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "7566c73375f0",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0001",
+            "baseline": "claude",
+            "labels": {
+              "A": "claude",
+              "B": "skill"
+            },
+            "label": "B",
+            "arm": "skill",
+            "mean": 1.0,
+            "values": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"do not `git push`...\"; \"a write from you would silently overwrite someone else's work without an error.\""
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"`reference/importer-spec.md` — ... do not edit it\"; reference/MANIFEST.sha256 pins it, and anchor.txt pins the manifest"
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/output/handback_check.py:\"except Exception: traceback.print_exc(file=sys.stdout) ... sys.exit(2)\"; the check.py adapter passes the exit code through"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/output/project_gates.py:C01 exit 1; a real gate exists: unit suite, black-box good/bad CSV cases with a sentinel output"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:\"sha(os.path.join(pkg, f)) != h\" against anchor.txt; START.md and check.py pinned; T01-T03 ok"
+              },
+              "K6": {
+                "answer": "Y",
+                "evidence": "handoff/output/RECEIPT.md:\"## Unsure ... write 'none' only if true\"; G2 fails when the section is empty or still holds template text"
+              },
+              "K7": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"`evidence/` — one file per completion claim, starting with the re-run command (`$ …`) and containing the raw output\""
+              },
+              "K8": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Anything that must leave the package goes into `output/pending/`, and the acceptor moves it.\""
+              },
+              "K9": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:\"planned {len(planned)} / ran {ran} / failed {failed}\"; \"NOT RUN steps are not passes\"; .acceptance.txt declares the steps"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:Step 2 ordered file list, TASK.md deliverable in output/work/, \"python3 handback_check.py\" before hand-back, \"What you hand back\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "verify.py:T01 ok, T02 ok, T03 ok (\"trustroot FAIL mismatch: ['check.py']\")"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "16cb0883e42e",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0002",
+            "baseline": "claude",
+            "labels": {
+              "A": "skill",
+              "B": "claude"
+            },
+            "label": "A",
+            "arm": "skill",
+            "mean": 1.0,
+            "values": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"do not `git push`\" ... \"a write from you would silently overwrite someone else's work without an error.\""
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"`reference/importer-spec.md` — the owner's source requirement; do not edit it.\" Sealed by reference/MANIFEST.sha256 and checked by G5."
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/output/handback_check.py:\"except Exception: traceback.print_exc(...) ... sys.exit(2)\". Fails return 1, and check.py passes the exit code through."
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/output/project_gates.py:C01 exit 1. Once the deliverable exists, the unit suite and black-box good/short-row cases actually run."
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "anchor.txt:covers START.md and check.py. acceptor-tools/handoff_verify.py step_trustroot compares the hashes. T01–T03 all ok."
+              },
+              "K6": {
+                "answer": "Y",
+                "evidence": "handoff/output/RECEIPT.md:\"## Unsure ... write 'none' only if true\". G2 fails if the section is empty or still holds template text."
+              },
+              "K7": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"one file per completion claim, starting with the re-run command (`$ …`) and containing the raw output\""
+              },
+              "K8": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Anything that must leave the package goes into `output/pending/`, and the acceptor moves it.\""
+              },
+              "K9": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:\"planned {len(planned)} / ran {ran} / failed {failed}\". Steps come from handoff/.acceptance.txt, and NOT RUN is never counted as a pass."
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:Steps 0–3 give the reading order (spec, TASK.md, gates), the deliverable in output/work/, the handback_check run, and the output/ hand-back."
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "anchor.txt:T01, T02 and T03 all ok. The replaced check.py is named even when in-package hashes are rewritten."
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "16cb0883e42e",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0002",
+            "baseline": "claude",
+            "labels": {
+              "A": "skill",
+              "B": "claude"
+            },
+            "label": "B",
+            "arm": "claude",
+            "mean": 0.6818181818181818,
+            "values": [
+              0.5,
+              1,
+              1,
+              1,
+              1,
+              0.5,
+              0,
+              0,
+              0.5,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"Do not edit, rename or delete any other file in `handoff/`\". The reason given is that files are fingerprinted. It never mentions remotes or pushing, and gives no overwrite-others reason."
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"especially not `START.md`, `check.py` or `importer-spec.md`. These files are fingerprinted\". The spec is hashed in check.py PROTECTED and in anchor.txt."
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:\"except BaseException: traceback.print_exc() ... sys.exit(2)\". Failures return 1 and success returns 0."
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:C01 exit 1. Once importer.py exists, it runs real fixed and random acceptance cases."
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:compares every anchor.txt entry, covering START.md and check.py, and refuses to run a changed checker. T01–T03 all ok."
+              },
+              "K6": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"any assumption, deviation, or disagreement ... anything left unfinished\". There is no explicit Unsure section, and nothing says empty means unfilled."
+              },
+              "K7": {
+                "answer": "N",
+                "evidence": "handoff/START.md:no evidence-file rule. NOTES.md only asks \"how you tested it beyond the checker (if you did)\"."
+              },
+              "K8": {
+                "answer": "N",
+                "evidence": "handoff/START.md:there is no mention of commits, pushes, memory or devlogs, and no pending-records location."
+              },
+              "K9": {
+                "answer": "P",
+                "evidence": "verify.py:the docstring lists steps 1 and 2, and a skipped checker counts as a failure. There is no planned/ran/failed count and no declared step list."
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:it gives the contract, the deliverable \"handoff/work/importer.py\", \"python3 handoff/check.py\", and \"Return the whole handoff/ folder\"."
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "anchor.txt:T01, T02 and T03 all ok. The changed check.py is reported as \"CHANGED  check.py\"."
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "3e64b81aface",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0003",
+            "baseline": "claude",
+            "labels": {
+              "A": "skill",
+              "B": "claude"
+            },
+            "label": "A",
+            "arm": "skill",
+            "mean": 1.0,
+            "values": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"do not `git push`\"; \"a write from you would silently overwrite someone else's work without an error\""
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"reference/importer-spec.md — the owner's source requirement; do not edit it\" + reference/MANIFEST.sha256 pins it"
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/output/handback_check.py:except Exception: traceback.print_exc(...); sys.exit(2); check.py passes the exit code on"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/output/project_gates.py:runs unit suite plus good/bad CSV black-box cases; C01 exit 1"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:runs handoff_verify step_trustroot against anchor.txt (covers START.md, check.py); T01-T03 ok"
+              },
+              "K6": {
+                "answer": "Y",
+                "evidence": "handoff/output/RECEIPT.md:\"## Unsure ... write 'none' only if true\"; G2 fails empty or template text"
+              },
+              "K7": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"evidence/ — one file per completion claim, starting with the re-run command ($ …) and containing the raw output\""
+              },
+              "K8": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:\"Anything that must leave the package goes into output/pending/, and the acceptor moves it\""
+              },
+              "K9": {
+                "answer": "Y",
+                "evidence": "acceptor-tools/handoff_verify.py:prints \"planned N / ran M / failed K\"; NOT RUN is not a pass; .acceptance.txt declares steps"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:Step 2 reading order, TASK.md deliverable in output/work/, run handback_check.py, \"What you hand back\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "scorer:T01, T02, T03 all ok"
+              }
+            },
+            "valid": true
+          },
+          {
+            "blind": "3e64b81aface",
+            "task": "nk-handoff-package",
+            "case": "handoff",
+            "run": "0003",
+            "baseline": "claude",
+            "labels": {
+              "A": "skill",
+              "B": "claude"
+            },
+            "label": "B",
+            "arm": "claude",
+            "mean": 0.6818181818181818,
+            "values": [
+              0.5,
+              1,
+              1,
+              1,
+              1,
+              0.5,
+              0,
+              0,
+              0.5,
+              1,
+              1
+            ],
+            "details": {
+              "K1": {
+                "answer": "P",
+                "evidence": "handoff/START.md:\"Nothing outside work/ may change\"; the reason is only \"hand-back is rejected\", and remotes/push are never mentioned"
+              },
+              "K2": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:table \"importer-spec.md ... May you change it? No\" + anchor.txt pins importer-spec.md"
+              },
+              "K3": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:except Exception: traceback.print_exc(); sys.exit(2)"
+              },
+              "K4": {
+                "answer": "Y",
+                "evidence": "handoff/check.py:fixed, error and randomized importer cases once present; C01 exit 1"
+              },
+              "K5": {
+                "answer": "Y",
+                "evidence": "verify.py:check_hashes against anchor.txt (START.md, check.py); T01-T03 ok"
+              },
+              "K6": {
+                "answer": "P",
+                "evidence": "handoff/START.md:NOTES.md covers \"anything ... wrong or unclear, and anything unfinished\"; generic notes, no Unsure section or empty=unfilled rule"
+              },
+              "K7": {
+                "answer": "N",
+                "evidence": "handoff/START.md:no requirement for per-claim evidence files with a re-run command and raw output"
+              },
+              "K8": {
+                "answer": "N",
+                "evidence": "handoff/START.md:commits, memory, devlogs and pushes are not mentioned and no pending queue exists"
+              },
+              "K9": {
+                "answer": "P",
+                "evidence": "verify.py:docstring lists unchanged/no extras/checker passes, and \"not run, because check.py was modified\" fails; no planned/ran count"
+              },
+              "K10": {
+                "answer": "Y",
+                "evidence": "handoff/START.md:file table, task contract, work/importer.py, run python3 handoff/check.py, \"Return the whole handoff/ folder\""
+              },
+              "K11": {
+                "answer": "Y",
+                "evidence": "scorer:T01, T02, T03 all ok"
+              }
+            },
+            "valid": true
+          }
+        ],
+        "arms": {
+          "claude": {
+            "cases": {
+              "handoff": {
+                "judged": 3,
+                "mean": 0.6969696969696969
+              }
+            },
+            "mean": 0.6969696969696969
+          },
+          "skill": {
+            "cases": {
+              "handoff": {
+                "judged": 3,
+                "mean": 1.0
+              }
+            },
+            "mean": 1.0
+          }
+        },
+        "errors": [],
+        "complete": true
+      }
+    },
+    "historical_codex": null
+  },
+  "comparisons": {
+    "Codex judge vs plain Codex": "WIN",
+    "Claude judge vs plain Codex": "WIN",
+    "Codex judge vs plain Claude": "WIN",
+    "Claude judge vs plain Claude": "WIN"
+  },
+  "verdict": "TOOL on this benchmark",
+  "quality_delta_threshold": 0.2727272727272727
+}

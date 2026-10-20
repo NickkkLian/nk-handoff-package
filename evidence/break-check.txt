@@ -1,0 +1,19 @@
+$ python3 -B break_checks.py  # run from the parent job folder
+Mutation in scripts/make_verifier.py: "'acceptor-tools' / 'handoff_verify.py'" -> "'missing-tools' / 'handoff_verify.py'"
+Harness passed to python3 -B -c:
+import sys; sys.path.insert(0, "scripts"); import make_verifier as m
+try:
+    result = m.selftest()
+    if isinstance(result, tuple):
+        ok, lines = result; print("\n".join(lines)); sys.exit(0 if ok else 2)
+    sys.exit(result)
+except AssertionError:
+    print("Native self-test assertion failed: relocated verifier did not pass."); sys.exit(2)
+
+Native self-test assertion failed: relocated verifier did not pass.
+exit=2
+
+Restored control:
+make_verifier selftest: 3/3 passed (relocated success, tamper rejection, no absolute lab path)
+exit=0
+Restored bytes match pre-mutation SHA-256: 976189941cfa6c23914b7df32a4adc062eca9838912d15fd81e7537b3f530712

@@ -1,0 +1,51 @@
+$ TMPDIR="$PWD/.tmp" python3 -B scripts/handback_check.py --selftest
+handback_check selftest · 10/10 passed
+  ✔ a fresh, unfilled package FAILS (receipt template, no evidence) — empty is not green: [('G2', 'output/RECEIPT.md'), ('G3', 'output/evidence/')]
+  ✔ a properly filled package passes every gate ([])
+  ✔ altering the read-only layer FAILS G5
+  ✔ an evidence file without a '$ ' re-run line FAILS G3
+  ✔ template text left in the receipt's Unsure section FAILS G2
+  ✔ work delivered with an empty commit message FAILS G4 and G6
+  ✔ a template edited in place (same name, different hash) is checked, not exempt
+  ✔ a failing project gate FAILS G7 with its location
+  ✔ a crashing project gate propagates (exit 2 in main), it is not reported as a pass
+  ✔ a copy of this file alone (as inside a package) explains where to run the self-test, exit 2, no traceback (2)
+exit=0
+
+$ TMPDIR="$PWD/.tmp" python3 -B scripts/handoff_init.py --selftest
+handoff_init selftest · 9/9 passed
+  ✔ scaffold creates the skeleton
+  ✔ START.md carries the boundary clause (write scope + read-only remotes)
+  ✔ form=full declares three acceptance steps
+  ✔ form=round declares two
+  ✔ a non-empty package is refused and left untouched
+  ✔ seal writes a manifest with one entry
+  ✔ trust root pins 5 files outside the package (['START.md', 'output/handback_check.py', 'output/project_gates.py', '.templates.sha256', 'reference/MANIFEST.sha256'])
+  ✔ editing the checker changes its hash against the trust root
+  ✔ trust root on a missing package refuses
+exit=0
+
+$ TMPDIR="$PWD/.tmp" python3 -B scripts/handoff_verify.py --selftest
+handoff_verify selftest · 8/8 passed
+  ✔ control: filled, sealed, pinned package passes 3/3 (planned 3 / ran 3 / failed 0)
+  ✔ no trust-root file → trustroot NOT RUN, overall not a pass
+  ✔ a modified checker fails the trust root by name
+  ✔ a broken evidence file fails selfcheck and the raw checker output is kept
+  ✔ a crashing checker is CRASH, not FAIL and not pass
+  ✔ a source file newer than the package copy is reported as stale (drift ≠ tamper)
+  ✔ an altered reference file is reported as altered
+  ✔ a package without .acceptance.txt is refused (no guessed denominator)
+exit=0
+
+$ TMPDIR="$PWD/.tmp" python3 -B scripts/make_verifier.py --selftest
+make_verifier selftest: 3/3 passed (relocated success, tamper rejection, no absolute lab path)
+exit=0
+
+$ TMPDIR="$PWD/.tmp" python3 -B -W ignore::ResourceWarning -m unittest discover -s tests -v
+test_relocated_delivery_and_external_anchor (test_portability.PortabilityTests.test_relocated_delivery_and_external_anchor) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.106s
+
+OK
+exit=0

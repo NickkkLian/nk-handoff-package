@@ -23,6 +23,7 @@ git clone https://github.com/NickkkLian/nk-handoff-package && cd nk-handoff-pack
 python3 scripts/handback_check.py --selftest
 python3 scripts/handoff_init.py --selftest
 python3 scripts/handoff_verify.py --selftest
+python3 -B scripts/make_verifier.py --selftest
 python3 scripts/handoff_init.py demo job --form round | sed "s|$PWD/||g"
 ```
 
@@ -65,6 +66,28 @@ The full procedure, the boundaries and where the rules came from are in [SKILL.m
 **Where it came from.** Own practice, 2026-09: five delegations of whole projects to an outside agent, two of them cross-reviewed for eight rounds each; a trust root added after three in-package ways of turning red into green were measured; a stop rule added after an eleven-round audit loop.
 
 **Evidence.** What was broken on purpose to show that the self-tests can fail is under [Verify](#verify); what was run end to end, and in which agent, is under [Compatibility](#compatibility).
+
+## Portable acceptor entry point — 2026-10-20
+
+For the repaired workflow: when the task uses `handoff/` and an external `anchor.txt`, run
+`python3 scripts/make_verifier.py /path/to/project`. Deliver `verify.py` and `acceptor-tools/` together beside
+`handoff/`; keep those acceptor files and `anchor.txt` outside the folder writable by the executor. The entry point
+resolves its bundled runner relative to itself. It requires no lab checkout or machine-specific absolute path.
+The relocated fixture passes 9/9 original mechanical checks in three recorded re-scorings; these are not new model runs.
+
+## Measured comparison — 2026-10-20
+
+**TOOL on this benchmark.** Plain Codex and plain Claude received the ordinary task prompt on the same cases and pinned inputs, without the benchmark skill. Both a Codex judge and a Claude judge assessed the artifacts using the native rubric and randomized blind labels. All three arms passed the full mechanical task 3/3; the measured advantage is in judged quality.
+
+| Arm | Original full passes | QA full passes | Original mean score | Codex judge | Claude judge | Agent seconds |
+| --- | --- | --- | --- | --- | --- | --- |
+| Repaired skill | 3/3 | 3/3 | 1.0000 | 0.9545 | 0.9848 / 1.0000 | 0.0 |
+| Plain Codex | 3/3 | 3/3 | 1.0000 | 0.6667 | 0.6667 | 484.9 |
+| Plain Claude | 3/3 | 3/3 | 1.0000 | 0.6818 | 0.6970 | 598.2 |
+
+Claude judge skill means are separate for the Codex-pair and Claude-pair contexts. These are paired ratings, not one pooled skill mean.
+
+The skill arm is one repaired recorded artifact re-scored three times, not three independent model generations. The original handoff threshold requires a quality delta of at least 3/11. Only a clear win over both baselines under both judges qualifies as TOOL. No speed advantage is claimed. The small sample (n=3), task reuse, recognizable templates, same-family judges, paired judging contexts, different run dates and different agent caps limit generalization. Other tasks, models, agent versions and installation routes were not retested in this release job. The compatibility table below is historical, not a fresh compatibility claim. See [EVIDENCE.md](EVIDENCE.md) and [the measured records](evidence/cross-agent-2026-10-20.json) for settings and per-case ratings.
 
 ## Install
 
@@ -143,9 +166,10 @@ In this skill's Codex run, every call into the skill folder's scripts/ used that
 python3 scripts/handback_check.py --selftest
 python3 scripts/handoff_init.py --selftest
 python3 scripts/handoff_verify.py --selftest
+python3 -B scripts/make_verifier.py --selftest
 ```
 
-Standard library only, Python 3.9+. On 2026-09-30 every self-test above passed, and
+Standard library only, Python 3.9+. The original three scripts passed their self-tests on 2026-09-30, and
 `breakcheck.py` from [nk-breakable-selftest](https://github.com/NickkkLian/nk-breakable-selftest) broke each script on purpose in a sandbox copy:
 
 - `handback_check.py`: 3 lines broken one at a time; 1 turned the self-test red without a traceback. Not covered: the self-test stayed green with L132, L214 switched off.
@@ -155,6 +179,8 @@ Standard library only, Python 3.9+. On 2026-09-30 every self-test above passed, 
 The unmutated control stayed green every time. Only lines that record a finding, raise, or return a failing exit code
 were broken (the tool's pattern, or the hand-written list); a line number refers to the script as shipped in this version.
 This shows those lines are covered. It does not show that nothing else can fail.
+
+Release checks on 2026-10-20: all four script self-tests and the relocation regression pass. A deliberate broken bundled-runner path makes the portable self-test fail; restoring the original bytes passes again. Raw commands and output: [release checks](evidence/release-tests.txt), [break check](evidence/break-check.txt). Run the focused regression with `python3 -B -W ignore::ResourceWarning -m unittest discover -s tests -v`; the warning filter applies only to inherited handoff helpers that still use temporary file handles without context managers.
 
 ## Limits
 

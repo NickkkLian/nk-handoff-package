@@ -1,0 +1,8 @@
+# job · trust root · 2026-10-22 10:04
+# Compare byte for byte at hand-back; any mismatch ⇒ nothing the package reports about itself counts.
+# A mismatch is not fixed by editing the package to match; it is explained.
+78d1b865f3a7a288cb0d69146d77290098fbdd7e8165df44413581fbbe663c22  START.md
+e722b0f1481cd41ce85d45ae0d6ef07e13233a5ffdecdeda1253cb8a60c95fad  output/handback_check.py
+06311d33ee8ff7ad4d6b4bd2f992b8455107d80792e4e0e398334461dd299959  output/project_gates.py
+675be40561f2641aab41932bfd619063520b8f236786cf5c0127a5fa89f8d3ab  .templates.sha256
+16db18f3eadc635e7c6df6b93fee682c076252985e346a4e943978b49f958845  reference/MANIFEST.sha256

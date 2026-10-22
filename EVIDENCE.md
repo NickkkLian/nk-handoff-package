@@ -4,7 +4,7 @@
 
 | Arm | Original full passes | QA full passes | Original mean score | Codex judge | Claude judge | Agent seconds |
 | --- | --- | --- | --- | --- | --- | --- |
-| Repaired skill | 3/3 | 3/3 | 1.0000 | 0.9545 | 0.9848 / 1.0000 | 0.0 |
+| Repaired skill | 3/3 | 3/3 | 1.0000 | 0.9545 | 0.9848 / 1.0000 | n/a (recorded run) |
 | Plain Codex | 3/3 | 3/3 | 1.0000 | 0.6667 | 0.6667 | 484.9 |
 | Plain Claude | 3/3 | 3/3 | 1.0000 | 0.6818 | 0.6970 | 598.2 |
 

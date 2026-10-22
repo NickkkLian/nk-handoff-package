@@ -2,12 +2,32 @@
 
 An agent skill for [Claude Code](https://code.claude.com) and [OpenAI Codex](https://developers.openai.com/codex). Hand a line of work to an executor that has no context — another agent, a contractor, a future session — so that the work comes back checkable.
 
-**What you get.** One real run of nk-handoff-package 0.1.2, copied from the terminal on 2026-09-30 (the output names the full path of the folder it ran in, and that path is cut from the copy below):
+**What you get.** A hand-back you can accept or refuse. Below, the acceptor's runner on a small synthetic package ([examples/demo/](examples/demo/): a one-line task, "write `slugify()`", handed back with tests, evidence and a receipt). Then the same package after the executor swapped the hand-back checker for `print("ALL PASS")`. Both runs are real output, copied on 2026-10-22 from a clone of this repository.
 
 ```text
-$ python3 scripts/handoff_init.py demo job --form round
-scaffolded demo/job (form round). Next: fill every '<<< FILL' slot, put inputs in reference/, then --seal and --trust-root.
+$ python3 scripts/handoff_verify.py examples/demo/job --trust-root examples/demo/trust-root.txt
+  ✔ trustroot  PASS     5 pinned files match
+  ✔ selfcheck  PASS     exit 0
+planned 2 / ran 2 / failed 0
+$ echo $?
+0
 ```
+
+```text
+$ cp -R examples/demo/job /tmp/job-tampered
+$ echo 'print("ALL PASS")' > /tmp/job-tampered/output/handback_check.py
+$ python3 scripts/handoff_verify.py /tmp/job-tampered --trust-root examples/demo/trust-root.txt
+  ✘ trustroot  FAIL     mismatch: ['output/handback_check.py'] — nothing the package says about itself counts until this is explained
+  ✔ selfcheck  PASS     exit 0
+planned 2 / ran 2 / failed 1
+next: dispatch an independent auditor on output/evidence/ (this runner is not the audit)
+--- raw handback_check output ---
+ALL PASS
+$ echo $?
+1
+```
+
+The replaced checker still exits 0 ("selfcheck PASS"): a package cannot vouch for itself. Only the hashes kept outside it (`trust-root.txt`) show that the checker is not the one that was shipped, and the runner exits 1. In the first run, the lines after `planned 2 / ran 2 / failed 0` (the next-step line, a "--- raw handback_check output ---" marker, then the raw output of the 19 gate checks, all passing) are left out; run the command to see them. The demo package was built in one go by [examples/build_demo.sh](examples/build_demo.sh), so its trust root was pinned after it was filled in; in real use you pin it before you hand the package out.
 
 ![nk-handoff-package](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/social/nk-handoff-package.png)
 
@@ -24,6 +44,7 @@ python3 scripts/handback_check.py --selftest
 python3 scripts/handoff_init.py --selftest
 python3 scripts/handoff_verify.py --selftest
 python3 -B scripts/make_verifier.py --selftest
+python3 scripts/handoff_verify.py examples/demo/job --trust-root examples/demo/trust-root.txt
 python3 scripts/handoff_init.py demo job --form round
 ```
 
@@ -33,13 +54,10 @@ The self-tests print:
 handback_check selftest · 10/10 passed
 handoff_init selftest · 9/9 passed
 handoff_verify selftest · 8/8 passed
+make_verifier selftest: 3/3 passed (relocated success, tamper rejection, no absolute lab path)
 ```
 
-The last command prints the line at the top of this page, except that your copy starts with the full path of your clone (the folder you cloned into) in front of `demo/job`. Its last line is the one below, and its exit code is 0.
-
-```text
-scaffolded demo/job (form round). Next: fill every '<<< FILL' slot, put inputs in reference/, then --seal and --trust-root.
-```
+The verify command prints the first run at the top of this page (exit code 0). The last command only scaffolds an empty package: it prints `scaffolded <full path of your clone>/demo/job (form round). Next: fill every '<<< FILL' slot, put inputs in reference/, then --seal and --trust-root.` and its exit code is 0. That is setup, not a result.
 
 ![nk-handoff-package demo: before and after](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/nk-handoff-package.gif)
 
@@ -81,13 +99,15 @@ The relocated fixture passes 9/9 original mechanical checks in three recorded re
 
 | Arm | Original full passes | QA full passes | Original mean score | Codex judge | Claude judge | Agent seconds |
 | --- | --- | --- | --- | --- | --- | --- |
-| Repaired skill | 3/3 | 3/3 | 1.0000 | 0.9545 | 0.9848 / 1.0000 | 0.0 |
+| Repaired skill | 3/3 | 3/3 | 1.0000 | 0.9545 | 0.9848 / 1.0000 | n/a (recorded run) |
 | Plain Codex | 3/3 | 3/3 | 1.0000 | 0.6667 | 0.6667 | 484.9 |
 | Plain Claude | 3/3 | 3/3 | 1.0000 | 0.6818 | 0.6970 | 598.2 |
 
+The judged criteria include features the plain prompt was never asked for (a receipt with an "Unsure" section, one evidence file per claim, `pending/` records, planned/ran/failed counts, a trust root kept outside the package), so this table shows what the skill adds, not that a plain agent fails at the same task: all three arms passed the mechanical task 3/3.
+
 Claude judge skill means are separate for the Codex-pair and Claude-pair contexts. These are paired ratings, not one pooled skill mean.
 
-The skill arm is one repaired recorded artifact re-scored three times, not three independent model generations. The original handoff threshold requires a quality delta of at least 3/11. Only a clear win over both baselines under both judges qualifies as TOOL. No speed advantage is claimed. The small sample (n=3), task reuse, recognizable templates, same-family judges, paired judging contexts, different run dates and different agent caps limit generalization. Other tasks, models, agent versions and installation routes were not retested in this release job. The compatibility table below is historical, not a fresh compatibility claim. See [EVIDENCE.md](EVIDENCE.md) and [the measured records](evidence/cross-agent-2026-10-20.json) for settings and per-case ratings.
+The skill arm is one repaired recorded artifact re-scored three times, not three independent model generations. The original handoff threshold requires a quality delta of at least 3/11. Only a clear win over both baselines under both judges qualifies as TOOL. No speed advantage is claimed: the skill row's "Agent seconds" is n/a because its package was not made live in this comparison. It is the recorded output of an agent run of skill 0.1.0 (gpt-5.6-sol, low reasoning, 2026-09-16), replayed and re-scored, so there is no run time to set against the 484.9 and 598.2 seconds the plain arms took. The small sample (n=3), task reuse, recognizable templates, same-family judges, paired judging contexts, different run dates and different agent caps limit generalization. Other tasks, models, agent versions and installation routes were not retested in this release job. The compatibility table below is historical, not a fresh compatibility claim. See [EVIDENCE.md](EVIDENCE.md) and [the measured records](evidence/cross-agent-2026-10-20.json) for settings and per-case ratings.
 
 ## Install
 

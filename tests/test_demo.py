@@ -35,7 +35,7 @@ class DemoTests(unittest.TestCase):
 
     def test_readme_quotes_what_the_runner_prints(self):
         readme = (ROOT / 'README.md').read_text()
-        for line in (MISMATCH, 'planned 2 / ran 2 / failed 0', 'planned 2 / ran 2 / failed 1',
+        for line in (MISMATCH, 'next: dispatch an independent auditor on output/evidence/ (this runner is not the audit)', 'planned 2 / ran 2 / failed 0', 'planned 2 / ran 2 / failed 1',
                      '  ✔ trustroot  PASS     5 pinned files match'):
             self.assertIn(line, readme)
 

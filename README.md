@@ -9,6 +9,7 @@ $ python3 scripts/handoff_verify.py examples/demo/job --trust-root examples/demo
   ✔ trustroot  PASS     5 pinned files match
   ✔ selfcheck  PASS     exit 0
 planned 2 / ran 2 / failed 0
+next: dispatch an independent auditor on output/evidence/ (this runner is not the audit)
 $ echo $?
 0
 ```
@@ -27,7 +28,7 @@ $ echo $?
 1
 ```
 
-The replaced checker still exits 0 ("selfcheck PASS"): a package cannot vouch for itself. Only the hashes kept outside it (`trust-root.txt`) show that the checker is not the one that was shipped, and the runner exits 1. In the first run, the lines after `planned 2 / ran 2 / failed 0` (the next-step line, a "--- raw handback_check output ---" marker, then the raw output of the 19 gate checks, all passing) are left out; run the command to see them. The demo package was built in one go by [examples/build_demo.sh](examples/build_demo.sh), so its trust root was pinned after it was filled in; in real use you pin it before you hand the package out.
+The replaced checker still exits 0 ("selfcheck PASS"): a package cannot vouch for itself. Only the hashes kept outside it (`trust-root.txt`) show that the checker is not the one that was shipped, and the runner exits 1. Exit 0 means the declared steps passed, not that the work is correct: the runner says so itself in its `next:` line, and a hand-back whose code is wrong but whose evidence file looks right is also accepted (see Limits). In the first run, the lines after the `next:` line (a "--- raw handback_check output ---" marker, then the raw output of the 19 gate checks, all passing) are left out; run the command to see them. The demo package was built in one go by [examples/build_demo.sh](examples/build_demo.sh), so its trust root was pinned after it was filled in; in real use you pin it before you hand the package out.
 
 ![nk-handoff-package](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/social/nk-handoff-package.png)
 
@@ -103,7 +104,7 @@ The relocated fixture passes 9/9 original mechanical checks in three recorded re
 | Plain Codex | 3/3 | 3/3 | 1.0000 | 0.6667 | 0.6667 | 484.9 |
 | Plain Claude | 3/3 | 3/3 | 1.0000 | 0.6818 | 0.6970 | 598.2 |
 
-The judged criteria include features the plain prompt was never asked for (a receipt with an "Unsure" section, one evidence file per claim, `pending/` records, planned/ran/failed counts, a trust root kept outside the package), so this table shows what the skill adds, not that a plain agent fails at the same task: all three arms passed the mechanical task 3/3.
+The judged criteria include features the plain prompt was never asked for (a receipt with an "Unsure" section, one evidence file per claim, `pending/` records, and, partly, the planned/ran/failed count), so this table shows what the skill adds, not that a plain agent fails at the same task. Plain agents also caught a swapped checker (the prompt asked for a fingerprint file kept outside the package), and all three arms passed the mechanical task 3/3.
 
 Claude judge skill means are separate for the Codex-pair and Claude-pair contexts. These are paired ratings, not one pooled skill mean.
 

@@ -2,10 +2,10 @@
 
 An agent skill for [Claude Code](https://code.claude.com) and [OpenAI Codex](https://developers.openai.com/codex). Hand a line of work to an executor that has no context — another agent, a contractor, a future session — so that the work comes back checkable.
 
-**What you get.** One real run of nk-handoff-package 0.1.2, copied from the terminal on 2026-09-30:
+**What you get.** One real run of nk-handoff-package 0.1.2, copied from the terminal on 2026-09-30 (the output names the full path of the folder it ran in, and that path is cut from the copy below):
 
 ```text
-$ python3 scripts/handoff_init.py demo job --form round | sed "s|$PWD/||g"
+$ python3 scripts/handoff_init.py demo job --form round
 scaffolded demo/job (form round). Next: fill every '<<< FILL' slot, put inputs in reference/, then --seal and --trust-root.
 ```
 
@@ -24,7 +24,7 @@ python3 scripts/handback_check.py --selftest
 python3 scripts/handoff_init.py --selftest
 python3 scripts/handoff_verify.py --selftest
 python3 -B scripts/make_verifier.py --selftest
-python3 scripts/handoff_init.py demo job --form round | sed "s|$PWD/||g"
+python3 scripts/handoff_init.py demo job --form round
 ```
 
 The self-tests print:
@@ -35,7 +35,7 @@ handoff_init selftest · 9/9 passed
 handoff_verify selftest · 8/8 passed
 ```
 
-The last command prints the block at the top of this page; its last line is the one below, and its exit code is 0.
+The last command prints the line at the top of this page, except that your copy starts with the full path of your clone (the folder you cloned into) in front of `demo/job`. Its last line is the one below, and its exit code is 0.
 
 ```text
 scaffolded demo/job (form round). Next: fill every '<<< FILL' slot, put inputs in reference/, then --seal and --trust-root.

@@ -4,7 +4,7 @@ description: Hand a line of work to an executor that has no context — another 
 license: MIT
 metadata:
   provenance: own practice (2026-09); no external source
-  version: 0.1.5
+  version: 0.1.6
 ---
 # Handoff package
 
@@ -96,4 +96,4 @@ measured; a stop rule added after an eleven-round audit loop. No external source
 
 ## Portable acceptor entry point
 
-For a project using handoff/ and anchor.txt, run scripts/make_verifier.py on the project folder. Keep verify.py, acceptor-tools/ and anchor.txt outside the executor-writeable handoff/ directory. Return those acceptor files together; the runner is bundled and resolved relative to verify.py, so moving the delivery does not depend on a lab path.
+For a project using handoff/ and anchor.txt, run `python3 ${CLAUDE_SKILL_DIR}/scripts/make_verifier.py <project>` on the project folder. Keep verify.py, acceptor-tools/ and anchor.txt outside the executor-writeable handoff/ directory. Return those acceptor files together; the runner is bundled and resolved relative to verify.py, so moving the delivery does not depend on a lab path.

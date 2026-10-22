@@ -187,6 +187,10 @@ Release checks on 2026-10-20: all four script self-tests and the relocation regr
 - The checks read shapes (a `$` line, a filled section, a hash). A plausible fabrication passes; the auditor and the evidence exist for that reason.
 - Without `--source`, drift only proves the executor did not alter its inputs, not that the inputs are current.
 
+## Privacy
+
+This skill's scripts run on your computer, started by you or by the agent you use it in. `handoff_init.py` writes files and folders only in the workspace folder you name (put it inside your own project) and, with `--seal`, records a hash of each file you put in `reference/`. `make_verifier.py` writes only into the delivery folder you name. `handoff_verify.py` copies the package you name into a temporary folder, runs the package's own scripts there (`output/handback_check.py`, which can load `output/project_gates.py`; both are code written by whoever filled the package, so run the verifier only on packages you trust), and deletes the copy; with `--source` it also reads and hashes the source folder you name. Nothing is sent anywhere: the scripts open no network connection and read no environment variable. The agent you run the skill in sends your conversation, including what the scripts print, to its own model provider under your own sign-in; this skill does not. The author keeps no data.
+
 ## License
 
 MIT. Read a script before letting it run in your environment.

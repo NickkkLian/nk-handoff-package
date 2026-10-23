@@ -1,6 +1,6 @@
 # nk-handoff-package
 
-> **Retired as a standalone skill — 2026-10-22; directory removal pending.** This repository is retained for its code, examples and history. Plain-prompt agents matched the core handoff task in all six saved runs. A tested replay upgrade and a local evidence-audit composition did not establish a reason to keep a separate product. Removal from the active skills directory is prepared locally and has not been published. No replacement release is announced. The examples, comparison and installation instructions below are historical material for existing users.
+> **Retired as a standalone skill — 2026-10-22.** This repository is retained for its code, examples and history. Plain-prompt agents matched the core handoff task in all six saved runs. A tested replay upgrade and a local evidence-audit composition did not establish a reason to keep a separate product. It is no longer offered through the active skills directory ([nickkk-skills](https://github.com/NickkkLian/nickkk-skills)). No replacement release is announced.
 
 An agent skill for [Claude Code](https://code.claude.com) and [OpenAI Codex](https://developers.openai.com/codex). Hand a line of work to an executor that has no context — another agent, a contractor, a future session — so that the work comes back checkable.
 
